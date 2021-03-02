@@ -3,10 +3,6 @@ const {hashPassword, comparePassword} = require('../helper/hash-password')
 const token = require('../helper/jason-web-token')
 
 class AccountController {
-    static register(req, res) {
-        
-    }
-
     static submitRegister(req, res) {
         let newUser = {
             email: req.body.email,
@@ -29,10 +25,6 @@ class AccountController {
                     res.status(500).json({message: "Internal Server Error"})
                 }
             })
-    }
-
-    static login(req, res) {
-
     }
 
     static submitLogin(req, res) {
