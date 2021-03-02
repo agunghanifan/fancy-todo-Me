@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Account.hasMany(models.Todo, {foreignKey: "AccountId"})
     }
   };
   Account.init({

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Todo.belongsTo(models.Account,{foreignKey: "AccountId"})
     }
   };
   Todo.init({
@@ -63,7 +64,18 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
-    } 
+    },
+    AccountId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: {
+          tableName: "Accounts"
+        },
+        key: "id"
+      },
+      onUpdate: "cascade",
+      onDelete: "cascade"
+    }
   }, {
     sequelize,
     modelName: 'Todo',
