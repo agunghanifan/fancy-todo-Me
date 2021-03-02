@@ -14,6 +14,16 @@ This app has dependency:
 4. JSON Web Tokens JS
 5. Bcrypt JS
 
+EndPonints list:
+1. GET /todos
+2. POST /todos
+3. GET /todos/:id
+4. PUT /todos/:id
+5. PATCH /todos/:id
+6. DELETE /todos/:id
+7. POST /login
+8. POST /register
+
 ## RESTful Endpoints
 ### GET /todos
 Get all Todo list
@@ -311,48 +321,6 @@ Submit form login
     ]
 ```
 
-### GET /login
-Show page form login
-
-- Request Header
-```JSON
-    not needed        
-```
-
-- Request body
-```JSON
-    not needed
-```
-
-- Response (200) Ok
-```JSON
-    {
-        "email": "",
-        "password": "",
-    }
-```
-
-### GET /register
-Show page form login
-
-- Request Header
-```JSON
-    not needed        
-```
-
-- Request body
-```JSON
-    not needed
-```
-
-- Response (200) Ok
-```JSON
-    {
-        "email": "",
-        "password": "",
-    }
-```
-
 ### POST /register
 Submit form login
 
@@ -387,8 +355,6 @@ Submit form login
 ```
 
 
-
-
 ## Global Response
 
 - Response (500) Internal server Error
@@ -397,13 +363,3 @@ Submit form login
         "message": "Internal Server Error"
     }
 ```
-
-
-
-
-
-
-
-
-
-
