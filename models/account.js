@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
         notEmpty: {
           msg : "Username harus diisi"
@@ -45,15 +46,24 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: {
           msg : "Password harus diisi"
         },
+        min : {
+          args: 6,
+          msg : "Password harus minimal 6 karakter"
+        }
       }
     } 
   }, {
     sequelize,
     modelName: 'Account',
     hooks: {
+      afterValidate: (instance) => {
+        if(instance.password.length < 6) {
+          throw new Error("Password length min. 6 character");
+        }
+      },
       beforeCreate: (instance) => {
         instance.password = hashPassword(instance.password)
-      }
+      },
     }
   });
   return Account;

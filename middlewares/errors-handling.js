@@ -1,7 +1,6 @@
 
 
 const errorHandler = (err, req, res, next) => {
-    // console.log("masuk errorHandler")
     if(err.code == 400) {
         res.status(400).json({message: err.message})
     } else if(err.code == 401) {
