@@ -10,16 +10,11 @@ const authenticate = (req, res, next) => {
                 if(user) {
                     req.user = {id: user.id, email: user.email}
                     next()
-                } else {
-                    throw new Error()
-                }
-            })
-            .catch((err) => {
-                throw new Error()
+                } 
             })
             
         } catch (error) {
-            // res.status(401).json({message: "Unautorized"})
+            console.log("masuk sini")
             next({code: 401, message: 'Unauthorized User'})
         }
 }
@@ -30,12 +25,10 @@ const authorization = (req, res, next) => {
             if(req.user.id == data.AccountId) {
                 next()
             } else {
-                // res.status(401).json({message: "Unauthorize"})
                 next({code: 401, message: 'Unauthorized User'})
             }
         })
         .catch((err) => {
-            // res.status(404).json({message: "Todo Not Found"})
             next({code: 404, message: 'Todo Not Found'})
         })
 }

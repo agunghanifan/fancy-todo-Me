@@ -8,7 +8,6 @@ class TodosController {
                 if(data) {
                     res.status(200).json(data)
                 } else {
-                    // res.status(404).json({message: "Todo List not found"})
                     next({code: 404, message: "Todo List Not Found"})
                 }
             })
@@ -31,13 +30,16 @@ class TodosController {
                     due_date: req.body.due_date,
                     AccountId: req.user.id
                 }
+                if(body.description[body.description.length - 1] != ".") {
+                    body.description += "."
+                }
                 response.data.response.holidays.forEach(data => {
                     if(body.due_date == data.date.iso) {
-                        body.description += `. Tanggal ini bertepatan dengan ${data.name}. berikut penjelasannya = ${data.description}. `
+                        body.description += ` Tanggal ini bertepatan dengan ${data.name}. berikut penjelasannya = ${data.description}.`
                     }
                 })
-                if(body.description == req.body.description) {
-                    body.description += `. Tidak ada event special Calendar`
+                if(body.description == req.body.description + ".") {
+                    body.description += ` Tidak ada event special Calendar.`
                 }
                 return Todo.create(body)
 
@@ -52,11 +54,8 @@ class TodosController {
                         errors.push(error.message)
                     })
                     next({code: 400, message: errors})
-                    // res.status(400).json(errors)
                 } else {
                     next({code: 500, message: "Internal Server Error"})
-                    // errors.push("Internal Server Error")
-                    // res.status(500).json(errors)
                 }
             })
     }
@@ -68,19 +67,14 @@ class TodosController {
                 if(data) {
                     res.status(200).json(data)
                 } else {
-                    // throw new Error("Todo Not Found")
                     next({code:404, message: "Todo Not Found"})
                 }
             })
             .catch(err => {
                 let errors = []
                 if(err) {
-                    // errors.push(err.message)
-                    // res.status(404).json(errors)
                     next({code:404, message: errors})
                 } else {
-                    // errors.push("Internal Server Error")
-                    // res.status(500).json(errors)
                     next({code:500, message: "Internal Server Error"})
                 }
             })
@@ -126,15 +120,11 @@ class TodosController {
             .catch((err) => {
                 let errors = []
                 if(err !== undefined) {
-                    // console.log(err.errors)
                     err.errors.forEach((error) => {
                         errors.push(error.message)
                     })
-                    // res.status(400).json(errors)
                     next({code:404, message: errors})
                 } else {
-                    // errors.push("Internal Server Error")
-                    // res.status(500).json(errors)
                     next({code:500, message: "Internal Server Error"})
                 }
             })
@@ -149,7 +139,6 @@ class TodosController {
                 if(data[0] !== 0) {
                     return Todo.findByPk(Number(req.params.id))
                 } else {
-                    // throw new Error("Todo Not Found")
                     next({code:404, message: "Todo Not Found"})
                 }
             })
@@ -159,14 +148,8 @@ class TodosController {
             .catch((err) => {
                 let errors = []
                 if(err) {
-                    // err.errors.forEach((error) => {
-                    //     errors.push(error.message)
-                    // })
-                    // res.status(400).json(errors)
                     next({code:404, message: errors})
                 } else {
-                    // errors.push("Internal Server Error")
-                    // res.status(500).json(errors)
                     next({code:500, message: "Internal Server Error"})
                 }
             })
@@ -178,17 +161,11 @@ class TodosController {
                 if(data) {
                     res.status(200).json("todo successfully deleted")
                 } else {
-                    // throw new Error("Todo Not Found")
                     next({code:404, message: "Todo Not Found"})
                 }
             })
             .catch((err) => {
-                // let errors = []
-                // errors.push("Internal Server Error")
-                // res.status(500).json(errors)
                 next({code:500, message: "Internal Server Error"})
-
-                
             })
     }
 }
