@@ -354,6 +354,29 @@ Submit form login
     ]
 ```
 
+### GET /quotes
+generate random quotes
+
+- Request Header
+```JSON
+    {
+        "access_token": "<your access token>"        
+    }
+```
+
+- Request body
+```JSON
+   not needed
+```
+
+- Response (201) Created
+```JSON
+    {
+        "quote": "Quotes of the day",
+        "author": "-author",
+    }
+```
+
 
 ## Global Response
 

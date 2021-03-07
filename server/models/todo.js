@@ -59,11 +59,16 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Tanggal Wajib Diisi"
         },
         isBefore(value) {
-          if((new Date()) > value && (new Date()).toDateString() !== value.toDateString() ) {
-            throw new Error("Tanggal tidak boleh dari masa lalu")
+          if(value) {
+            if((new Date()) > value && (new Date()).toDateString() !== value.toDateString() ) {
+              throw new Error("Tanggal tidak boleh dari masa lalu")
+            }
           }
         }
       }
+    },
+    event: {
+      type: DataTypes.TEXT
     },
     AccountId: {
       type: DataTypes.INTEGER,
