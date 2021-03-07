@@ -17,17 +17,43 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Account.init({
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg : "Firstname harus diisi"
+        },
+        notNull : {
+          args: true,
+          msg : "Firstname harus diisi"
+        },
+      }
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg : "Lastname harus diisi"
+        },
+        notNull : {
+          args: true,
+          msg : "Lastname harus diisi"
+        },
+      }
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
         notEmpty: {
-          msg : "Username harus diisi"
+          msg : "Email harus diisi"
         },
         notNull : {
           args: true,
-          msg : "Username harus diisi"
+          msg : "Email harus diisi"
         },
         isEmail : {
           args: true,
