@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development nodemon app.js",
-    "sandbox": "set NODE_ENV=development node sandbox.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "agunghanifan",
