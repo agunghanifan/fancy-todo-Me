@@ -4,9 +4,9 @@ const routerTodos = require("./todos-routes")
 const routerAccount = require("./account-routes")
 
 
-router.get('/', (req, res) => {
-  res.status(200).send("Hello WOrld!")
-})
+// router.get('/', (req, res) => {
+//   res.status(200).send("Hello WOrld!")
+// })
 
 router.use("/todos", routerTodos)
 router.use("/", routerAccount)
