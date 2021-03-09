@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://minimalist-todoapp.herokuapp.com"
 let idSet 
 $("document").ready(function () {
   showQuotes()
